@@ -357,41 +357,42 @@ const people = [
 // eslint-disable-next-line no-console
 console.log(people); // you can remove it
 
-const table = document.querySelector('.dashboard');
-
-people.forEach((person) => {
+for (const person of people) {
   const row = document.createElement('tr');
 
-  const nameCell = document.createElement('td');
+  document.querySelector('.dashboard').append(row);
 
-  nameCell.textContent = person.name;
+  const fullName = document.createElement('td');
 
-  const genderCell = document.createElement('td');
+  fullName.textContent = person.name;
 
-  genderCell.textContent = person.sex;
+  const gender = document.createElement('td');
 
-  const bornCell = document.createElement('td');
+  if (person.sex === 'f') {
+    gender.textContent = 'Female';
+  } else {
+    gender.textContent = 'Male';
+  }
 
-  bornCell.textContent = person.born;
+  const born = document.createElement('td');
 
-  const diedCell = document.createElement('td');
+  born.textContent = person.born;
 
-  diedCell.textContent = person.died;
+  const died = document.createElement('td');
 
-  const ageCell = document.createElement('td');
+  died.textContent = person.died;
 
-  ageCell.textContent = person.died - person.born;
+  const age = document.createElement('td');
 
-  const centuryCell = document.createElement('td');
+  age.textContent = person.died - person.born;
 
-  centuryCell.textContent = Math.ceil(person.died / 100);
+  const century = document.createElement('td');
 
-  row.appendChild(nameCell);
-  row.appendChild(genderCell);
-  row.appendChild(bornCell);
-  row.appendChild(diedCell);
-  row.appendChild(ageCell);
-  row.appendChild(centuryCell);
+  century.textContent = Math.ceil(person.died / 100);
 
-  table.appendChild(row);
-});
+  const human = [fullName, gender, born, died, age, century];
+
+  for (const item of human) {
+    row.appendChild(item);
+  }
+}
